@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  web:
+    build: .
+    env_file:
+      - ./elk/.env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app
+    command: python manage.py runserver 0.0.0.0:8000
+  postgres:
+    image: postgres:10.17
+    ports:
+      - "5455:5432"
+    env_file:
+      - ./elk/.env
+    volumes:
+      - ./volumes/pgdata:/var/lib/postgresql/data:rw
+  redis:
+    image: redis:6.2.4-alpine
+    ports:
+      - "6379:6379"

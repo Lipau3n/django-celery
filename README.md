@@ -20,6 +20,17 @@ cp elk/.env.circle elk/.env
 ./manage.py loaddata crm lessons products teachers
 ```
 
+
+### Using local with Docker
+
+```sh
+docker compose build
+docker compose up -d
+docker compose exec postgres psql postgres -U postgres
+postgres=# CREATE DATABASE elk;
+docker compose exec web python manage.py migrate
+```
+
 For always-actual bootstrap process please consider CI configuration.
 
 Running a development host:

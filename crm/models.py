@@ -289,3 +289,12 @@ class Issue(models.Model):
                 self._copy_to_helpdesk()
             except:
                 logger.error('Could not save issue')
+
+
+class Activity(models.Model):
+    customer = models.OneToOneField(Customer, on_delete=models.CASCADE)
+    last_notice_date = models.DateField(verbose_name="Last notice day", blank=True, null=True)
+
+    class Meta:
+        verbose_name = "Customer activity"
+        verbose_name_plural = "Customer activities"

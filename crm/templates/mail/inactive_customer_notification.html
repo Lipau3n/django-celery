@@ -1,0 +1,17 @@
+{% extends "mail_templated/base.tpl" %}
+
+{% load absolute_url %}
+
+{% block subject %}
+Hey, {{ c.first_name | capfirst }}, you haven't been in for a long time.
+{% endblock %}
+
+{% block body %}
+Dear {{ c.first_name | capfirst }},
+
+Come back and keep learning!
+
+Dream BIG and make it happen
+ELK Academy
+Education + Love = Knowledge
+{% endblock %}
