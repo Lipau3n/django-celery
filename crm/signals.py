@@ -28,10 +28,12 @@ def create_profile_for_new_users(sender, **kwargs):
 
     user = kwargs['instance']
     Customer = apps.get_model('crm.Customer')
+    Activity = apps.get_model('crm.Activity')
     try:
         if user.crm is not None:
             return
     except Customer.DoesNotExist:
         pass
 
-    Customer.objects.create(user=user)
+    customer = Customer.objects.create(user=user)
+    Activity.objects.create(customer=customer)
